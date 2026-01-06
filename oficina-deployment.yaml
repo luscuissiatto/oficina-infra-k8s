@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oficina-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oficina-app
+  template:
+    metadata:
+      labels:
+        app: oficina-app
+    spec:
+      containers:
+        - name: oficina-app
+          image: ghcr.io/luscuissiatto/oficina-app:latest
+          ports:
+            - containerPort: 8080
+          env:
+            # Conexão com o Banco (RDS)
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://ENDPOINT_DO_RDS_AQUI:5432/oficina"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: oficina-secret # <--- Vamos criar esse secret via GitHub Actions ou Terraform
+                  key: DB_PASSWORD
+            
+            # Configuração do Token (Mesma da Lambda)
+            - name: API_SECURITY_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: oficina-secret
+                  key: JWT_SECRET
