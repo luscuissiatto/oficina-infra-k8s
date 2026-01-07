@@ -20,7 +20,7 @@ spec:
           env:
             # Conexão com o Banco (RDS)
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://ENDPOINT_DO_RDS_AQUI:5432/oficina"
+              value: "jdbc:postgresql://oficina-db-instance.cwx8ygkc4hs8.us-east-1.rds.amazonaws.com:5432/oficina"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
@@ -35,3 +35,16 @@ spec:
                 secretKeyRef:
                   name: oficina-secret
                   key: JWT_SECRET
+
+            - name: SPRING_MAIL_HOST
+              value: "mailhog-service"  # Nome do serviço do MailHog no Kubernetes
+            - name: SPRING_MAIL_PORT
+              value: "1025"             # Porta SMTP do MailHog
+            - name: SPRING_MAIL_USERNAME
+              value: ""                 # MailHog não precisa de senha
+            - name: SPRING_MAIL_PASSWORD
+              value: ""
+            - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH
+              value: "false"
+            - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE
+              value: "false"

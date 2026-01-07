@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: oficina-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
-    app: oficina
+    app: oficina-app
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-      nodePort: 30001
