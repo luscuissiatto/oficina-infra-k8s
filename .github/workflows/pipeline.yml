@@ -25,4 +25,4 @@ jobs:
         run: aws eks update-kubeconfig --name oficina-mecanica-prod --region us-east-1
         
       - name: Deploy K8s Manifests
-        run: kubectl apply -f .
+        run: kubectl apply -f k8s/
