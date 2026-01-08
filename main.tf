@@ -28,7 +28,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "19.15.3"
 
-  cluster_name    = "oficina-cluster-final"
+  cluster_name    = "oficina-mecanica-prod"
   cluster_version = "1.31"
 
   vpc_id                         = module.vpc.vpc_id

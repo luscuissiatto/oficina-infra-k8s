@@ -22,7 +22,7 @@ jobs:
           terraform apply -auto-approve
           
       - name: Configure Kubectl
-        run: aws eks update-kubeconfig --name oficina-cluster-final --region us-east-1
+        run: aws eks update-kubeconfig --name oficina-mecanica-prod --region us-east-1
         
       - name: Deploy K8s Manifests
         run: kubectl apply -f .
