@@ -1,0 +1,41 @@
+global:
+  cluster: oficina-prod
+  licenseKey: 4a7e5816bde2197bcec1917018125567FFFFNRAL
+  lowDataMode: true
+  privileged: true
+
+newrelic-infrastructure:
+  enabled: true
+
+nri-prometheus:
+  enabled: false
+
+nri-metadata-injection:
+  enabled: true
+
+kube-state-metrics:
+  enabled: true
+
+nri-kube-events:
+  enabled: true
+
+newrelic-logging:
+  enabled: true
+
+newrelic-pixie:
+  enabled: false
+
+pixie-chart:
+  enabled: false
+
+newrelic-infra-operator:
+  enabled: false
+
+newrelic-prometheus-agent:
+  enabled: true
+
+k8s-agents-operator:
+  enabled: true
+
+newrelic-k8s-metrics-adapter:
+  enabled: false
