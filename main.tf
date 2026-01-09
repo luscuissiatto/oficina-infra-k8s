@@ -1,8 +1,5 @@
-# oficina-infra-k8s/main.tf
-
 data "aws_availability_zones" "available" {}
 
-# 1. Cria uma VPC Exclusiva para o Cluster (Melhor prática)
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.0.0"
@@ -15,7 +12,7 @@ module "vpc" {
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
 
   enable_nat_gateway = true
-  single_nat_gateway = true # Economiza dinheiro ($) nos créditos
+  single_nat_gateway = true
   enable_vpn_gateway = false
 
   tags = {
@@ -23,7 +20,6 @@ module "vpc" {
   }
 }
 
-# 2. Cria o Cluster EKS
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "19.15.3"

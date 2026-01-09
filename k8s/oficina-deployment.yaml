@@ -18,7 +18,6 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            # Conexão com o Banco (RDS)
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://oficina-db-instance.cwx8ygkc4hs8.us-east-1.rds.amazonaws.com:5432/oficina"
             - name: SPRING_DATASOURCE_USERNAME
@@ -26,10 +25,9 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: oficina-secret # <--- Vamos criar esse secret via GitHub Actions ou Terraform
+                  name: oficina-secret
                   key: DB_PASSWORD
             
-            # Configuração do Token (Mesma da Lambda)
             - name: API_SECURITY_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
@@ -37,14 +35,26 @@ spec:
                   key: JWT_SECRET
 
             - name: SPRING_MAIL_HOST
-              value: "mailhog-service"  # Nome do serviço do MailHog no Kubernetes
+              value: "mailhog-service"
             - name: SPRING_MAIL_PORT
-              value: "1025"             # Porta SMTP do MailHog
+              value: "1025"
             - name: SPRING_MAIL_USERNAME
-              value: ""                 # MailHog não precisa de senha
+              value: ""
             - name: SPRING_MAIL_PASSWORD
               value: ""
             - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH
               value: "false"
             - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE
               value: "false"
+
+            - name: NEW_RELIC_APP_NAME
+              value: "oficina-mecanica"
+            
+            - name: NEW_RELIC_LICENSE_KEY
+              value: "COLE_SUA_CHAVE_NRII_AQUI"
+            
+            - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
+              value: "true"
+              
+            - name: NEW_RELIC_LOG_FILE_NAME
+              value: "STDOUT"
