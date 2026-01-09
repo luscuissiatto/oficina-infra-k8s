@@ -51,7 +51,7 @@ spec:
               value: "oficina-mecanica"
             
             - name: NEW_RELIC_LICENSE_KEY
-              value: "COLE_SUA_CHAVE_NRII_AQUI"
+              value: "D6D1DC8E07A665790EC3786803C149E5B53D4E500EDAC88A6075E4B048CE7881"
             
             - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
               value: "true"
